@@ -1,0 +1,22 @@
+:global(.ant-layout) {
+  &.menuIconButton {
+    margin-top: 64px;
+    :global(.ant-layout-sider-light) {
+      @media (max-width: 767px) {
+        position: absolute;
+        z-index: 2;
+      }
+      :global(.ant-layout-sider-zero-width-trigger) {
+        top: -52px;
+        left: 20px;
+        background: transparent;
+        outline: none;
+        border: none;
+      }
+    }
+    :global(.ant-layout-sider), :global(.ant-layout-content) {
+      overflow: auto;
+      max-height: calc(100vh - 64px);
+    }
+  }
+}

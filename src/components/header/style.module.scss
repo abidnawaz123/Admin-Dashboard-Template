@@ -1,7 +1,21 @@
+:global(.ant-layout-header){
+  &.topHeader{
+    position: fixed;
+    top: 0;
+    z-index: 1;
+    width: 100%;
+  }
+}
+
 .header {
   display: flex;
   align-items: center;
   gap: 32px;
+  img {
+    @media (max-width: 767px) {
+      display: none;
+    }
+  }
 }
 
 .inputField {
@@ -23,6 +37,9 @@
   }
   &:hover {
     border-color: #e5e7eb;
+  }
+  @media (max-width: 767px) {
+    display: none;
   }
 }
 .topAvatar {

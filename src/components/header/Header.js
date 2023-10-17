@@ -15,10 +15,13 @@ const CustomHeader = () => {
         alignItems: "center",
         backgroundColor: "white",
         justifyContent: "space-between",
+        borderBottom: "1px solid #f4f4f4",
+        boxShadow: "0px 0px 10px #f4f4f4",
       }}
+      className={styles.topHeader}
     >
       <div className={styles.header}>
-        <img src={Logo} width={35} height={33}/>
+        <img src={Logo} width={35} height={33} />
         <Input
           prefix={<SearchOutlined />}
           placeholder="Search"
