@@ -1,15 +1,17 @@
 import React from "react";
-import { Card, Col, Grid, Image, Layout, Menu, Row } from "antd";
-import Sider from "antd/es/layout/Sider";
-import { Content, Footer, Header } from "antd/es/layout/layout";
+import { Card, Col, Layout, Row, Typography } from "antd";
+import { Content, Footer } from "antd/es/layout/layout";
 import CustomHeader from "../header/Header";
-import MenuItems from "./MenuItems/MenuItems";
-import { MailOutlined } from "@ant-design/icons";
-import MenuIcon from "../../assets/Icons/Menu.svg";
 import styles from "./style.module.scss";
 import Chart from "../Chart/Chart";
 import Customer from "../Section/Customer/Customer";
 import ProductList from "../Section/Product/Product";
+import BottomTable from "../Section/Table/BottomTable";
+import FacebookIcon from "../../assets/SocialIcons/facebook.svg";
+import TwitterIcon from "../../assets/SocialIcons/twitter.svg";
+import GithubIcon from "../../assets/SocialIcons/github.svg";
+import DribbleIcon from "../../assets/SocialIcons/dribble.svg";
+import SiderBar from "../../Layout/Sider/Sider";
 
 const SideBar = () => {
   return (
@@ -17,22 +19,7 @@ const SideBar = () => {
       <Layout>
         <CustomHeader />
         <Layout className={styles.menuIconButton}>
-          <Sider
-            width={250}
-            theme="light"
-            breakpoint="md"
-            collapsedWidth="0"
-            onBreakpoint={(broken) => {
-              console.log(broken);
-            }}
-            onCollapse={(collapsed, type) => {
-              console.log(collapsed, type);
-            }}
-            trigger={<img src={MenuIcon} alt="menuIcon" className={styles.menuIconImg} />}
-          >
-            <div className="demo-logo-vertical" />
-            <MenuItems />
-          </Sider>
+          <SiderBar />
           <Content>
             <div
               style={{
@@ -50,7 +37,14 @@ const SideBar = () => {
                 </Col>
               </Row>
               <Row gutter={10}>
-                <Col flex={2} xs={24} sm={24} md={24} lg={24}>
+                <Col
+                  flex={2}
+                  xs={24}
+                  sm={24}
+                  md={24}
+                  lg={24}
+                  style={{ marginBottom: "1rem" }}
+                >
                   <Card>
                     <Customer />
                   </Card>
@@ -61,14 +55,21 @@ const SideBar = () => {
                   </Card>
                 </Col>
               </Row>
+              <BottomTable />
             </div>
-            <Footer
-              style={{
-                textAlign: "center",
-              }}
-            >
-              Ant Design ©2023 Created by Ant UED
-            </Footer>
+            <Card className={styles.footerCard}>
+              <Footer className={styles.footer}>
+                <Typography>
+                  Created By <b>Abid Nawaz</b> at <b>Enigmatix</b> in Year ©2023
+                </Typography>
+                <div className={styles.socialIcons}>
+                  <img src={FacebookIcon} />
+                  <img src={TwitterIcon} />
+                  <img src={GithubIcon} />
+                  <img src={DribbleIcon} />
+                </div>
+              </Footer>
+            </Card>
           </Content>
         </Layout>
       </Layout>

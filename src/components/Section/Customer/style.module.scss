@@ -8,8 +8,11 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      // flex-wrap: wrap;
-      //   gap: 1rem;
+      .email {
+        color: #6b7280;
+        font-size: 13px;
+        font-weight: 400;
+      }
       p {
         margin: 0;
       }
@@ -22,9 +25,9 @@
 @media (max-width: 360px) {
   .mainWrapper {
     .rows {
-        h3{
-            font-size: 15px;
-        }
+      h3 {
+        font-size: 15px;
+      }
       .customRow {
         p,
         h3 {

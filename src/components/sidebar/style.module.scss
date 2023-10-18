@@ -15,10 +15,42 @@
         border: none;
       }
     }
-    :global(.ant-layout-sider),
+    :global(.ant-layout-sider) {
+      height: calc(100vh - 64px);
+      z-index: 99;
+      overflow: auto;
+      max-height: calc(100vh - 64px);
+    }
     :global(.ant-layout-content) {
       overflow: auto;
       max-height: calc(100vh - 64px);
+    }
+  }
+}
+.footerCard {
+  margin: 24px;
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    background-color: transparent;
+    flex-wrap: wrap;
+
+    .socialIcons {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+  }
+}
+@media (max-width: 680px) {
+  .footerCard {
+    margin: 10px;
+    .footer {
+      flex-wrap: wrap;
+      flex-direction: column;
+      gap: 10px;
+      padding: 10px;
+      width: 100%;
     }
   }
 }
