@@ -1,9 +1,9 @@
 import React from "react";
 import { Layout } from "antd";
-import CustomHeader from "./header/Header";
+import CustomHeader from "../components/pages/header/Header";
 import styles from "./style.module.scss";
-import SiderBar from "./Sider/Sider";
-import ContentSection from "./Dashboard/Content";
+import SiderBar from "../components/Sider/Sider";
+import ContentSection from "../components/pages/Dashboard/Content";
 
 const MainLayout = () => {
   return (

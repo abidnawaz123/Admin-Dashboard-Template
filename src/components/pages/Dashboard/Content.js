@@ -1,14 +1,14 @@
 import React from "react";
 import { Card, Col, Row, Typography } from "antd";
 import { Content, Footer } from "antd/es/layout/layout";
-import Chart from "../../components/Chart/Chart";
-import Customer from "../../components/Section/Customer/Customer";
-import ProductList from "../../components/Section/Product/Product";
-import BottomTable from "../../components/Section/Table/BottomTable";
-import FacebookIcon from "../../assets/SocialIcons/facebook.svg";
-import TwitterIcon from "../../assets/SocialIcons/twitter.svg";
-import GithubIcon from "../../assets/SocialIcons/github.svg";
-import DribbleIcon from "../../assets/SocialIcons/dribble.svg";
+import Chart from "../../Chart/Chart";
+import Customer from "../../Section/Customer/Customer";
+import ProductList from "../../Section/Product/Product";
+import BottomTable from "../../Section/Table/BottomTable";
+import FacebookIcon from "../../../assets/SocialIcons/facebook.svg"
+import TwitterIcon from "../../../assets/SocialIcons/twitter.svg"
+import GithubIcon from "../../../assets/SocialIcons/github.svg"
+import DribbleIcon from "../../../assets/SocialIcons/dribble.svg"
 import styles from "./style.module.scss";
 
 const ContentSection = () => {

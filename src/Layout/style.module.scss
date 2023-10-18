@@ -16,10 +16,10 @@
       }
     }
     :global(.ant-layout-sider) {
-      height: calc(100vh - 64px);
+      // height: calc(100vh - 64px);
       z-index: 99;
       overflow: auto;
-      max-height: calc(100vh - 64px);
+      // max-height: calc(100vh - 64px);
     }
     :global(.ant-layout-content) {
       overflow: auto;
