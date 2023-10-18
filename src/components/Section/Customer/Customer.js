@@ -1,54 +1,83 @@
-import React, { useEffect, useState } from "react";
-import { Avatar, Divider, List, Skeleton, Typography } from "antd";
+import React from "react";
+import { Avatar, Card, Divider } from "antd";
+import styles from "./style.module.scss"
+import Neil from "../../../assets/Avatars/Neil.svg"
+import UIKit from "../../../assets/Avatars/Bonnie.svg"
+import Karen from "../../../assets/Avatars/Karen.svg"
+import Lana from "../../../assets/Avatars/Lana.svg"
+import Micheal from "../../../assets/Avatars/Micheal.svg"
+import Thomas from "../../../assets/Avatars/Thomas.svg"
 
 const Customer = () => {
-  const [loading, setLoading] = useState(false);
-  const [data, setData] = useState([]);
-  const loadMoreData = () => {
-    if (loading) {
-      return;
-    }
-    setLoading(true);
-    fetch(
-      "https://randomuser.me/api/?results=10&inc=name,gender,email,nat,picture&noinfo"
-    )
-      .then((res) => res.json())
-      .then((body) => {
-        setData([...data, ...body.results]);
-        setLoading(false);
-      })
-      .catch(() => {
-        setLoading(false);
-      });
-  };
-  useEffect(() => {
-    loadMoreData();
-  }, []);
   return (
-    <div
-      id="scrollableDiv"
-      style={{
-        height: 400,
-        overflow: "auto",
-        padding: "0 16px",
-        // border: "1px solid rgba(140, 140, 140, 0.35)",
-      }}
-    >
-      <List
-        dataSource={data.splice(0, 5)}
-        renderItem={(item) => (
-          <>
-            <List.Item key={item.email}>
-              <List.Item.Meta
-                avatar={<Avatar src={item.picture.large} />}
-                title={<a href="https://ant.design">{item.name.last}</a>}
-                description={item.email}
-              />
-              <div>Content</div>
-            </List.Item>
-          </>
-        )}
-      />
+    <div>
+        <header><h2>Latest Customers</h2></header>
+        <div className={styles.mainWrapper}>
+          <Avatar src={Neil} />
+          <div className={styles.rows}>
+            <h3 style={{ margin: 0 }}>Neil Sims</h3>
+            <div className={styles.customRow}>
+              <p>email@example.com</p>
+              <h3>$367</h3>
+            </div>
+          </div>
+        </div>
+        <Divider />
+        <div className={styles.mainWrapper}>
+          <Avatar src={UIKit} />
+          <div className={styles.rows}>
+            <h3 style={{ margin: 0 }}>Bonnie Green</h3>
+            <div className={styles.customRow}>
+              <p>email@example.com</p>
+              <h3>$67</h3>
+            </div>
+          </div>
+        </div>
+        <Divider />
+        <div className={styles.mainWrapper}>
+          <Avatar src={Karen} />
+          <div className={styles.rows}>
+            <h3 style={{ margin: 0 }}>Micheal Gough</h3>
+            <div className={styles.customRow}>
+              <p> email@example.com</p>
+              <h3>$3467</h3>
+            </div>
+          </div>
+        </div>
+        <Divider />
+        <div className={styles.mainWrapper}>
+          <Avatar src={Lana} />
+          <div className={styles.rows}>
+            <h3 style={{ margin: 0 }}>Thomas Lean</h3>
+            <div className={styles.customRow}>
+              <p>email@example.com</p>
+              <h3>$2367</h3>
+            </div>
+          </div>
+        </div>
+        <Divider />
+        <div className={styles.mainWrapper}>
+          <Avatar src={Micheal} />
+          <div className={styles.rows}>
+            <h3 style={{ margin: 0 }}>Lana Byrd</h3>
+            <div className={styles.customRow}>
+              <p>email@example.com</p>
+              <h3>$367</h3>
+            </div>
+          </div>
+        </div>
+        <Divider />
+        <div className={styles.mainWrapper}>
+          <Avatar src={Thomas} />
+          <div className={styles.rows}>
+            <h3 style={{ margin: 0 }}>Karen Nelson</h3>
+            <div className={styles.customRow}>
+              <p>email@example.com</p>
+              <h3>$1367</h3>
+            </div>
+          </div>
+        </div>
+        <Divider />
     </div>
   );
 };

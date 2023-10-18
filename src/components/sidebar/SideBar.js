@@ -9,13 +9,14 @@ import MenuIcon from "../../assets/Icons/Menu.svg";
 import styles from "./style.module.scss";
 import Chart from "../Chart/Chart";
 import Customer from "../Section/Customer/Customer";
+import ProductList from "../Section/Product/Product";
 
 const SideBar = () => {
   return (
     <>
       <Layout>
         <CustomHeader />
-        <Layout hasSider className={styles.menuIconButton}>
+        <Layout className={styles.menuIconButton}>
           <Sider
             width={250}
             theme="light"
@@ -27,7 +28,7 @@ const SideBar = () => {
             onCollapse={(collapsed, type) => {
               console.log(collapsed, type);
             }}
-            // trigger={<img src={MenuIcon} className={styles.menuIconImg} />}
+            trigger={<img src={MenuIcon} alt="menuIcon" className={styles.menuIconImg} />}
           >
             <div className="demo-logo-vertical" />
             <MenuItems />
@@ -37,25 +38,26 @@ const SideBar = () => {
               style={{
                 padding: 24,
                 // minHeight: 360,
-                background: "white",
+                background: "#F3F4F6",
                 borderRadius: 5,
               }}
             >
-              <Row gutter={12}>
+              <Row>
                 <Col span={24}>
                   <Card style={{ marginBottom: 10 }}>
                     <Chart />
                   </Card>
                 </Col>
-
-                <Col span={7}>
+              </Row>
+              <Row gutter={10}>
+                <Col flex={2} xs={24} sm={24} md={24} lg={24}>
                   <Card>
                     <Customer />
                   </Card>
                 </Col>
-                <Col span={17}>
+                <Col flex={5} xs={24} sm={24} md={24} lg={24}>
                   <Card>
-                    <Customer />
+                    <ProductList />
                   </Card>
                 </Col>
               </Row>

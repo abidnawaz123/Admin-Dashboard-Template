@@ -1,5 +1,6 @@
 import React from "react";
 import ReactEChart from "echarts-for-react";
+import AlertIcon from "../../assets/Icons/alert.svg"
 
 const Chart = () => {
   const option = {
@@ -39,6 +40,7 @@ const Chart = () => {
         maxWidth: "1600px",
       }}
     >
+      <div style={{fontWeight:"bolder",display:'flex',alignContent:'center',gap:10}}>Sales <img src={AlertIcon}/></div>
       <ReactEChart option={option} style={{ width: "100%" }} />
     </div>
   );

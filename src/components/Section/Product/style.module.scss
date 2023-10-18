@@ -1,0 +1,34 @@
+.rowsWrapper {
+  .customRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    p {
+      margin: 0;
+    }
+    h3 {
+      margin: 0;
+    }
+  }
+}
+@media (max-width: 350px) {
+  .rowsWrapper {
+    h3 {
+      font-size: 15px;
+    }
+    .customRow {
+      p {
+        font-size: 12px;
+      }
+      h3 {
+        font-size: 12px;
+      }
+    }
+  }
+}
+:global(.ant-divider-horizontal) {
+  margin: 6px;
+}
+header h2 {
+  margin-top: 0;
+}

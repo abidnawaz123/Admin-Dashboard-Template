@@ -7,14 +7,16 @@
         z-index: 2;
       }
       :global(.ant-layout-sider-zero-width-trigger) {
-        top: -52px;
+        position: fixed;
+        top: 8px;
         left: 20px;
         background: transparent;
         outline: none;
         border: none;
       }
     }
-    :global(.ant-layout-sider), :global(.ant-layout-content) {
+    :global(.ant-layout-sider),
+    :global(.ant-layout-content) {
       overflow: auto;
       max-height: calc(100vh - 64px);
     }

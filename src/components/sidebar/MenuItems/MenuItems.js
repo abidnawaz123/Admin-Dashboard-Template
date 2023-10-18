@@ -114,8 +114,8 @@ const MenuItems = () => {
                     <Menu.Item className={styles.submenuLabels} key="8">Billing</Menu.Item>
                     <Menu.Item className={styles.submenuLabels} key="9">Invoice</Menu.Item>
                 </SubMenu>
+                <hr color='#E5E7EB' />
             </Menu>
-            <Divider />
             <Menu
                 className={styles.MenuItems}
                 items={["Docs"].map((item, ind) => {
