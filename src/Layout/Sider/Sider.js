@@ -19,9 +19,9 @@ const SiderBar = () => {
       {/* <div className="demo-logo-vertical" /> */}
       <MenuItems />
       <div className={styles.iconsDiv}>
-        <img src={AdjustmentIcon} />
-        <img src={GlobeIcon} />
-        <img src={SettingIcon} />
+        <img src={AdjustmentIcon} alt="img"/>
+        <img src={GlobeIcon} alt="img"/>
+        <img src={SettingIcon} alt="img"/>
       </div>
     </Sider>
   );

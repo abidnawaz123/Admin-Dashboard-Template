@@ -1,4 +1,4 @@
-import { Card, Divider } from 'antd'
+import { Divider } from 'antd'
 import React from 'react'
 import styles from "./style.module.scss"
 

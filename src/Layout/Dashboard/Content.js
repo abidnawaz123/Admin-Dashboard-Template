@@ -1,10 +1,10 @@
 import React from "react";
-import { Card, Col, Layout, Row, Typography } from "antd";
+import { Card, Col, Row, Typography } from "antd";
 import { Content, Footer } from "antd/es/layout/layout";
-import Chart from "../Chart/Chart";
-import Customer from "../Section/Customer/Customer";
-import ProductList from "../Section/Product/Product";
-import BottomTable from "../Section/Table/BottomTable";
+import Chart from "../../components/Chart/Chart";
+import Customer from "../../components/Section/Customer/Customer";
+import ProductList from "../../components/Section/Product/Product";
+import BottomTable from "../../components/Section/Table/BottomTable";
 import FacebookIcon from "../../assets/SocialIcons/facebook.svg";
 import TwitterIcon from "../../assets/SocialIcons/twitter.svg";
 import GithubIcon from "../../assets/SocialIcons/github.svg";
@@ -14,14 +14,7 @@ import styles from "./style.module.scss";
 const ContentSection = () => {
   return (
     <Content>
-      <div
-        style={{
-          padding: 24,
-          // minHeight: 360,
-          background: "#F3F4F6",
-          borderRadius: 5,
-        }}
-      >
+      <div className={styles.contentSectionWrapper}>
         <Row>
           <Col span={24}>
             <Card style={{ marginBottom: 10 }}>
@@ -32,7 +25,6 @@ const ContentSection = () => {
         <Row gutter={10}>
           <Col
             flex={2}
-            xs={24}
             sm={24}
             md={24}
             lg={24}
@@ -42,7 +34,7 @@ const ContentSection = () => {
               <Customer />
             </Card>
           </Col>
-          <Col flex={5} xs={24} sm={24} md={24} lg={24}>
+          <Col flex={5} sm={24} md={24} lg={24}>
             <Card>
               <ProductList />
             </Card>
@@ -56,10 +48,10 @@ const ContentSection = () => {
             Created By <b>Abid Nawaz</b> at <b>Enigmatix</b> in Year ©2023
           </Typography>
           <div className={styles.socialIcons}>
-            <img src={FacebookIcon} />
-            <img src={TwitterIcon} />
-            <img src={GithubIcon} />
-            <img src={DribbleIcon} />
+            <img src={FacebookIcon} alt="img" />
+            <img src={TwitterIcon} alt="img" />
+            <img src={GithubIcon} alt="img" />
+            <img src={DribbleIcon} alt="img" />
           </div>
         </Footer>
       </Card>

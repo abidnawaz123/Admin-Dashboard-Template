@@ -21,7 +21,7 @@ const CustomHeader = () => {
       className={styles.topHeader}
     >
       <div className={styles.header}>
-        <img src={Logo} width={35} height={33} />
+        <img src={Logo} alt="img" width={35} height={33} />
         <Input
           prefix={<SearchOutlined />}
           placeholder="Search"
@@ -29,7 +29,7 @@ const CustomHeader = () => {
         />
       </div>
       <div className={styles.topAvatar}>
-        <img src={BellIcon} />
+        <img src={BellIcon} alt="img"/>
         <Avatar size="large" src={HeaderAvatar} />
       </div>
     </Header>

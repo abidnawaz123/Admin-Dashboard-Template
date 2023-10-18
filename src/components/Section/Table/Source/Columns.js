@@ -5,7 +5,13 @@ export const columns = [
     dataIndex: "transaction",
     key: "transaction",
     align: "left",
-    width:300,
+    width: 300,
+    render: (text) => (
+      <p>
+        {text.paying}{" "}
+        <span style={{ fontSize: "16px", fontWeight: "600" }}>{text.name}</span>
+      </p>
+    ),
   },
   {
     title: "DATE & TIME",
@@ -25,7 +31,7 @@ export const columns = [
     key: "status",
     align: "left",
     render: (item, index) => {
-      if (index.key == "3") {
+      if (index.key === "3") {
         return (
           <>
             <Badge
@@ -37,7 +43,7 @@ export const columns = [
             />
           </>
         );
-      } else if (index.key == "4" || index.key == "5") {
+      } else if (index.key === "4" || index.key === "5") {
         return (
           <>
             <Badge

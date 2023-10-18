@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Space, Typography, Table, Tag, Row, Col, Badge } from "antd";
+import { Card,  Typography, Table, Row, Col } from "antd";
 import styles from "./style.module.scss";
 import { columns } from "./Source/Columns";
 
@@ -7,37 +7,37 @@ const BottomTable = () => {
   const data = [
     {
       key: "1",
-      transaction: `Payment from Bonnie Green`,
+      transaction: { paying: "Payment from", name: "Bonnie Green" },
       dateNtime: "18 Oct,2023",
       amount: "$2300",
     },
     {
       key: "2",
-      transaction: `Payment refund to #00910`,
+      transaction: { paying: "Payment refund to", name: "#00910" },
       dateNtime: "18 Oct,2023",
       amount: "$2300",
     },
     {
       key: "3",
-      transaction: `Payment failed from #087651`,
+      transaction: { paying: "Payment failed from", name: "#087651" },
       dateNtime: "18 Oct,2023",
       amount: "$2300",
     },
     {
       key: "4",
-      transaction: `Payment from Bonnie Green`,
+      transaction: { paying: "Payment from", name: "Bonnie Green" },
       dateNtime: "18 Oct,2023",
       amount: "$2300",
     },
     {
       key: "5",
-      transaction: `Payment from Jese Leos`,
+      transaction: { paying: "Payment from", name: "Jese Leos" },
       dateNtime: "18 Oct,2023",
       amount: "$2300",
     },
     {
       key: "6",
-      transaction: `Payment from THEMSBERG LLC`,
+      transaction: { paying: "Payment from", name: "THEMSBERG LLC" },
       dateNtime: "18 Oct,2023",
       amount: "$2300",
     },

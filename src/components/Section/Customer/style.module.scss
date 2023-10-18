@@ -2,8 +2,14 @@
   display: flex;
   align-items: center;
   gap: 1rem;
+  .avatar {
+    width: 37px;
+  }
   .rows {
     width: 100%;
+    h3{
+      margin: 0;
+    }
     .customRow {
       display: flex;
       justify-content: space-between;

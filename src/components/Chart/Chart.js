@@ -40,7 +40,7 @@ const Chart = () => {
         maxWidth: "1600px",
       }}
     >
-      <div style={{fontWeight:"bolder",display:'flex',alignContent:'center',gap:10}}>Sales <img src={AlertIcon}/></div>
+      <div style={{fontWeight:"bolder",display:'flex',alignContent:'center',gap:10}}>Sales <img src={AlertIcon} alt="img"/></div>
       <ReactEChart option={option} style={{ width: "100%" }} />
     </div>
   );
