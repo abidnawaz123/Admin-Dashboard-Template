@@ -5,11 +5,8 @@ import Chart from "../../Chart/Chart";
 import Customer from "../../Section/Customer/Customer";
 import ProductList from "../../Section/Product/Product";
 import BottomTable from "../../Section/Table/BottomTable";
-import FacebookIcon from "../../../assets/SocialIcons/facebook.svg";
-import TwitterIcon from "../../../assets/SocialIcons/twitter.svg";
-import GithubIcon from "../../../assets/SocialIcons/github.svg";
-import DribbleIcon from "../../../assets/SocialIcons/dribble.svg";
 import styles from "./style.module.scss";
+import { CustomImg } from "../../../utils/images";
 
 const ContentSection = () => {
   return (
@@ -42,10 +39,10 @@ const ContentSection = () => {
             Created By <b>Abid Nawaz</b> at <b>Enigmatix</b> in Year ©2023
           </Typography>
           <div className={styles.socialIcons}>
-            <img src={FacebookIcon} alt="img" />
-            <img src={TwitterIcon} alt="img" />
-            <img src={GithubIcon} alt="img" />
-            <img src={DribbleIcon} alt="img" />
+            <img src={CustomImg.FacebookIcon} alt="facebook" />
+            <img src={CustomImg.TwitterIcon} alt="twitter" />
+            <img src={CustomImg.GithubIcon} alt="github" />
+            <img src={CustomImg.DribbleIcon} alt="dribble" />
           </div>
         </Footer>
       </Card>

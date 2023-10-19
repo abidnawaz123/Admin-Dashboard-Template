@@ -16,6 +16,8 @@
   margin-bottom: 1rem;
 }
 .bottomTable {
+  width: 100%;
+  overflow: auto;
   :global(.ant-table) {
     :global(.ant-table-container) {
       :global(.ant-table-content) {

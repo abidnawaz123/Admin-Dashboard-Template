@@ -1,11 +1,9 @@
 import React from "react";
 import Sider from "antd/es/layout/Sider";
-import AdjustmentIcon from "../../assets/Icons/adjustments.svg";
-import GlobeIcon from "../../assets/Icons/globe.svg";
-import SettingIcon from "../../assets/Icons/setting.svg";
 import MenuItems from "../MenuItems/MenuItems";
 import MenuIcon from "../../assets/Icons/Menu.svg";
 import styles from "./style.module.scss";
+import { CustomImg } from "../../utils/images";
 
 const SiderBar = () => {
   return (
@@ -20,9 +18,9 @@ const SiderBar = () => {
         <MenuItems />
       </div>
       <div className={styles.iconsDiv}>
-        <img src={AdjustmentIcon} alt="adjust" />
-        <img src={GlobeIcon} alt="globe" />
-        <img src={SettingIcon} alt="setting" />
+        <img src={CustomImg.AdjustmentIcon} alt="adjust" />
+        <img src={CustomImg.GlobeIcon} alt="globe" />
+        <img src={CustomImg.SettingIcon} alt="setting" />
       </div>
     </Sider>
   );

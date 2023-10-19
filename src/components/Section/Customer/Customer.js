@@ -2,12 +2,13 @@ import React from "react";
 import { Avatar, Card, Divider } from "antd";
 import styles from "./style.module.scss";
 import { CustomersList } from "./customerList";
+import { CUSTOMERS_LABEL } from "../../../utils/constants";
 
 const Customer = () => {
   return (
     <Card>
       <header>
-        <h2>Latest Customers</h2>
+        <h2>{CUSTOMERS_LABEL}</h2>
       </header>
       {CustomersList.map((items, _) => {
         return (

@@ -2,13 +2,14 @@ import { Card, Divider } from "antd";
 import React from "react";
 import styles from "./style.module.scss";
 import { products } from "./prodList";
+import { TOP_PRODUCTS } from "../../../utils/constants";
 
 const ProductList = () => {
   return (
     <>
       <Card>
         <header>
-          <h2>Top Products</h2>
+          <h2>{TOP_PRODUCTS}</h2>
         </header>
         {products.map((items, index) => {
           return (
