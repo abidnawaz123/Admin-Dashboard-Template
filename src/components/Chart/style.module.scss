@@ -1,0 +1,16 @@
+.mainCard {
+  margin-bottom: 10px;
+  .chartmainWrapper {
+    width: 100%;
+    max-width: 1600px;
+    .chartHeader {
+      font-weight: bolder;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .chart {
+      width: 100%;
+    }
+  }
+}

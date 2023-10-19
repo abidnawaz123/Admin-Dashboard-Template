@@ -1,48 +1,21 @@
 import React from "react";
 import ReactEChart from "echarts-for-react";
-import AlertIcon from "../../assets/Icons/alert.svg"
+import AlertIcon from "../../assets/Icons/alert.svg";
+import { Card } from "antd";
+import { option } from "./options";
+import styles from "./style.module.scss";
 
 const Chart = () => {
-  const option = {
-    grid: {
-      left: "0%",
-      right: "0%",
-      bottom: "0%",
-      containLabel: true,
-    },
-    tooltip: {
-      trigger: "axis",
-    },
-    xAxis: {
-      type: "category",
-      data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
-    },
-    yAxis: {
-      type: "value",
-      data: ["0K", "20K", "30K", "40K", "50K", "60K"],
-    },
-    series: [
-      {
-        data: [820, 932, 901, 934, 1290, 1330, 1320],
-        type: "line",
-        smooth: true,
-        itemStyle: {
-          color: "#0E9F6E",
-          border: "3px solid #0E9F6E",
-        },
-      },
-    ],
-  };
+  
   return (
-    <div
-      style={{
-        width: "100%",
-        maxWidth: "1600px",
-      }}
-    >
-      <div style={{fontWeight:"bolder",display:'flex',alignContent:'center',gap:10}}>Sales <img src={AlertIcon} alt="img"/></div>
-      <ReactEChart option={option} style={{ width: "100%" }} />
-    </div>
+    <Card className={styles.mainCard}>
+      <div className={styles.chartmainWrapper}>
+        <div className={styles.chartHeader}>
+          Sales <img src={AlertIcon} alt="img" />
+        </div>
+        <ReactEChart option={option} className={styles.chart} />
+      </div>
+    </Card>
   );
 };
 

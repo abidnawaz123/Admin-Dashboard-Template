@@ -1,13 +1,15 @@
 import React from "react";
 import { Menu } from "antd";
 import styles from "./style.module.scss";
-import OverViewIcon from "../../../assets/Icons/chartpie.svg";
-import InBoxIcon from "../../../assets/Icons/inboxin.svg";
-import ClipBoardIcon from "../../../assets/Icons/clipboardlist.svg";
-import CollectionIcon from "../../../assets/Icons/collection.svg";
-import SupportIcon from "../../../assets/Icons/support.svg";
-import ChevronUp from "../../../assets/Icons/chevron-up.svg";
-import ChevronDown from "../../../assets/Icons/chevron-down.svg";
+
+import OverViewIcon from "../../assets/Icons/chartpie.svg";
+import InBoxIcon from "../../assets/Icons/inboxin.svg";
+import ClipBoardIcon from "../../assets/Icons/clipboardlist.svg";
+import CollectionIcon from "../../assets/Icons/collection.svg";
+import SupportIcon from "../../assets/Icons/support.svg";
+import ChevronUp from "../../assets/Icons/chevron-up.svg";
+import ChevronDown from "../../assets/Icons/chevron-down.svg";
+
 import { SubMenu1, SubMenu2 } from "./SubMenu/Submenu";
 
 const MenuItems = () => {

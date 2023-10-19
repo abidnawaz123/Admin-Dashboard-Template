@@ -3,7 +3,7 @@ import Sider from "antd/es/layout/Sider";
 import AdjustmentIcon from "../../assets/Icons/adjustments.svg";
 import GlobeIcon from "../../assets/Icons/globe.svg";
 import SettingIcon from "../../assets/Icons/setting.svg";
-import MenuItems from "../sidebar/MenuItems/MenuItems";
+import MenuItems from "../MenuItems/MenuItems";
 import MenuIcon from "../../assets/Icons/Menu.svg";
 import styles from "./style.module.scss";
 
@@ -16,13 +16,7 @@ const SiderBar = () => {
       collapsedWidth="0"
       trigger={<img src={MenuIcon} alt="menuIcon" />}
     >
-      <div
-        style={{
-          minHeight: "calc(100vh - 128px",
-          maxHeight: "calc(100vh -  128px)",
-          overflow: "auto",
-        }}
-      >
+      <div className={styles.MenuItems}>
         <MenuItems />
       </div>
       <div className={styles.iconsDiv}>

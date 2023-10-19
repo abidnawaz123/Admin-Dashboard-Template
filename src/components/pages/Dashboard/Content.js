@@ -5,10 +5,10 @@ import Chart from "../../Chart/Chart";
 import Customer from "../../Section/Customer/Customer";
 import ProductList from "../../Section/Product/Product";
 import BottomTable from "../../Section/Table/BottomTable";
-import FacebookIcon from "../../../assets/SocialIcons/facebook.svg"
-import TwitterIcon from "../../../assets/SocialIcons/twitter.svg"
-import GithubIcon from "../../../assets/SocialIcons/github.svg"
-import DribbleIcon from "../../../assets/SocialIcons/dribble.svg"
+import FacebookIcon from "../../../assets/SocialIcons/facebook.svg";
+import TwitterIcon from "../../../assets/SocialIcons/twitter.svg";
+import GithubIcon from "../../../assets/SocialIcons/github.svg";
+import DribbleIcon from "../../../assets/SocialIcons/dribble.svg";
 import styles from "./style.module.scss";
 
 const ContentSection = () => {
@@ -17,9 +17,7 @@ const ContentSection = () => {
       <div className={styles.contentSectionWrapper}>
         <Row>
           <Col span={24}>
-            <Card style={{ marginBottom: 10 }}>
-              <Chart />
-            </Card>
+            <Chart />
           </Col>
         </Row>
         <Row gutter={10}>
@@ -30,14 +28,10 @@ const ContentSection = () => {
             lg={24}
             style={{ marginBottom: "1rem" }}
           >
-            <Card>
-              <Customer />
-            </Card>
+            <Customer />
           </Col>
           <Col flex={5} sm={24} md={24} lg={24}>
-            <Card>
-              <ProductList />
-            </Card>
+            <ProductList />
           </Col>
         </Row>
         <BottomTable />

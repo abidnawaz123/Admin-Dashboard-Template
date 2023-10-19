@@ -1,19 +1,19 @@
 import styles from "./style.module.scss";
 import React from "react";
 import { Menu } from "antd";
-import PagesIcon from "../../../../assets/Icons/documentreport.svg";
-import ShoppingBagIcon from "../../../../assets/Icons/shoppingbag.svg";
-import LockIcon from "../../../../assets/Icons/lock-closed.svg";
+import PagesIcon from "../../../assets/Icons/documentreport.svg";
+import ShoppingBagIcon from "../../../assets/Icons/shoppingbag.svg";
+import LockIcon from "../../../assets/Icons/lock-closed.svg";
 import SubMenu from "antd/es/menu/SubMenu";
 import { SettingOutlined } from "@ant-design/icons";
-import { SubMenuItemsStyle } from '../commonStyle';
+import { SubMenuItemsStyle } from "../../MenuItems/commonStyle";
 
 export const SubMenu1 = (
   <>
     <SubMenu
       key="sub1"
       openIcon={<SettingOutlined />}
-      icon={<img src={PagesIcon} alt="img"/>}
+      icon={<img src={PagesIcon} alt="img" />}
       style={SubMenuItemsStyle}
       title="Pages"
     >

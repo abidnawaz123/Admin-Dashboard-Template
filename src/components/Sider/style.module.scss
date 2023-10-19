@@ -1,3 +1,8 @@
+.MenuItems {
+  min-height: calc(100vh - 128px);
+  max-height: calc(100vh - 128px);
+  overflow: auto;
+}
 .iconsDiv {
   display: flex;
   justify-content: space-evenly;
