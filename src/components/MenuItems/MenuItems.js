@@ -44,6 +44,7 @@ const MenuItems = () => {
         mode="inline"
         expandIcon={customExpandIcon}
       >
+        {/*SubMenu 1*/}
         {SubMenu1}
         <Menu
           className={styles.MenuItems}
@@ -56,6 +57,7 @@ const MenuItems = () => {
             };
           })}
         />
+        {/*SubMenu 2*/}
         {SubMenu2}
         <hr color="#E5E7EB" />
       </Menu>

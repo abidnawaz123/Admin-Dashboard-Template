@@ -10,7 +10,9 @@ export const MULTIPURPOSE_TEMP = "Multipurpose Template";
 export const CUSTOMERS_LABEL = "Latest Customers";
 export const TOP_PRODUCTS = "Top Products";
 
-export const OVERVIEW = "Overview"
-export const MESSAGES = "Messages"
-export const DOCS = "Docs"
-export const COMPONENTS = "Components"
+export const OVERVIEW = "Overview";
+export const MESSAGES = "Messages";
+export const DOCS = "Docs";
+export const COMPONENTS = "Components";
+
+export const CREATED_BY = "Created By Abid Nawaz at Enigmatix in Year ©2023";

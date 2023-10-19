@@ -4,7 +4,7 @@ import { Menu } from "antd";
 import SubMenu from "antd/es/menu/SubMenu";
 import { SettingOutlined } from "@ant-design/icons";
 import { SubMenuItemsStyle } from "../../MenuItems/commonStyle";
-import { CustomImg } from '../../../utils/images';
+import { CustomImg } from "../../../utils/images";
 
 const subMenuChild = [
   { label: "Product List" },
@@ -54,7 +54,6 @@ export const SubMenu2 = (
     title="Authentication"
   >
     {subMenuChild.map((items, ind) => {
-      console.log("index is -->", ind + 7);
       return (
         <Menu.Item className={styles.submenuLabels} key={ind + 4}>
           {items.label}
