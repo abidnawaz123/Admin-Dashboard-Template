@@ -1,6 +1,6 @@
-import { CustomImg } from "../../../utils/images";
-import Customer from "../../Section/Customer/Customer";
-import ProductList from "../../Section/Product/Product";
+import ProductList from "../../components/Section/Product/Product";
+import Customer from "../../components/Section/Customer/Customer";
+import { CustomImg } from "../../utils/images";
 
 export const Columns = [
     { children: <Customer />, flex: 2 },
@@ -12,4 +12,4 @@ export const Columns = [
     {source :CustomImg.TwitterIcon, alt : "twitter" },
     {source :CustomImg.GithubIcon, alt : "github" },
     {source :CustomImg.DribbleIcon, alt : "dribble" },
-  ]
+  ];

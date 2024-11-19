@@ -1,11 +1,11 @@
 import React from "react";
 import { Card, Col, Row, Typography } from "antd";
 import { Content, Footer } from "antd/es/layout/layout";
-import Chart from "../../Chart/Chart";
-import BottomTable from "../../Section/Table/BottomTable";
+import Chart from "../../components/Chart/Chart";
+import BottomTable from "../../components/Section/Table/BottomTable";
 import styles from "./style.module.scss";
-import { CREATED_BY } from "../../../utils/constants";
-import { Columns, socialMedia } from "../Content/content";
+import { CREATED_BY } from "../../utils/constants";
+import { socialMedia, Columns } from "./dashboardUtils";
 
 const Dashboard = () => {
     return (

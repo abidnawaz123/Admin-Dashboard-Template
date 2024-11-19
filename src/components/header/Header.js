@@ -3,12 +3,12 @@ import { Header } from "antd/es/layout/layout";
 import { Avatar, Input } from "antd";
 import styles from "./style.module.scss";
 import { SearchOutlined } from "@ant-design/icons";
-import { CustomImg } from "../../../utils/images";
-import { DownOutlined, SettingOutlined } from "@ant-design/icons";
+import { CustomImg } from "../../utils/images";
 import { Dropdown, Space } from "antd";
-
+import { useNavigate } from "react-router-dom";
 
 const CustomHeader = () => {
+  const navigate = useNavigate();
 
   const items = [
     {
@@ -22,15 +22,14 @@ const CustomHeader = () => {
     {
       key: "2",
       label: "Dashboard",
+      onClick: () => navigate("/"),
       extra: "⌘P",
     },
     {
       key: "4",
       label: "Settings",
       extra: "⌘S",
-      onClick: (route) => {
-        console.log('clicked',route)
-      }
+      onClick: () => navigate("/settings")
     },
   ];
 
