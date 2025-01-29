@@ -9,6 +9,7 @@ import RootLayout from "./pages/RootLayout";
 import LoginPage from "./pages/Login/Login";
 import { useEffect } from "react";
 import ProtectedRoute from "./pages/ProtecedRoute";
+import KanbanBoard from "./components/Kanban/Kanbanboard";
 
 function App() {
   const router = createBrowserRouter([
@@ -28,7 +29,7 @@ function App() {
           path: "/settings",
           element: (
             <ProtectedRoute>
-              <SettingsPage />
+              <KanbanBoard />
             </ProtectedRoute>
           ),
         },
