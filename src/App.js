@@ -29,6 +29,14 @@ function App() {
           path: "/settings",
           element: (
             <ProtectedRoute>
+              <SettingsPage />
+            </ProtectedRoute>
+          ),
+        },
+        {
+          path: "/kanban",
+          element: (
+            <ProtectedRoute>
               <KanbanBoard />
             </ProtectedRoute>
           ),
