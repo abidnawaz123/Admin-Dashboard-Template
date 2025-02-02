@@ -11,6 +11,7 @@ import {
 import React, { useEffect, useState } from "react";
 import { UserOutlined } from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
+import { Content } from "antd/es/layout/layout";
 
 const { Title } = Typography;
 
@@ -53,91 +54,91 @@ const SettingsPage = () => {
   }
 
   return (
-    <div
+    <Content>
+      <div
       style={{
-        margin: "10px",
-        width: "100%",
-        height: "100%",
+        padding: 20
       }}
-    >
-      <Card style={{ width: "100%", overflow: "auto" }}>
-        <Title level={3}>Change your profile</Title>
-        <Form onFinish={handleSubmit}>
-          <Row gutter={[12, 12]}>
-            <Col xs={24}>
-              <Typography.Title level={5}>Email</Typography.Title>
-              <Input
-                size="large"
-                prefix={<UserOutlined />}
-                placeholder="Email"
-                value={userDetail?.email}
-                disabled
-              />
-            </Col>
-            <Col xs={24}>
-              <Typography.Title level={5}>Username</Typography.Title>
-              <Input
-                size="large"
-                prefix={<UserOutlined />}
-                placeholder="User name"
-                value={userDetail?.username}
-                disabled
-              />
-            </Col>
-            <Col xs={24} sm={12}>
-              <Typography.Title level={5}>First name</Typography.Title>
-              <Input
-                size="large"
-                prefix={<UserOutlined />}
-                placeholder="First Name"
-                value={userDetail?.first_name}
-                onChange={(event) =>
-                  setUserDetail((prevState) => ({
-                    ...prevState,
-                    first_name: event.target.value,
-                  }))
-                }
-              />
-            </Col>
-            <Col xs={24} sm={12}>
-              <Typography.Title level={5}>Last Name</Typography.Title>
-              <Input
-                size="large"
-                prefix={<UserOutlined />}
-                placeholder="Last Name"
-                value={userDetail?.last_name}
-                onChange={(event) =>
-                  setUserDetail((prevState) => ({
-                    ...prevState,
-                    last_name: event.target.value,
-                  }))
-                }
-              />
-            </Col>
-            <Col xs={24} md={{ span: 12, offset: 12 }}>
-              <Col xs={24} md={24}>
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "flex-end",
-                    marginTop: "20px",
-                  }}
-                >
-                  <Button
-                    type="primary"
-                    size="large"
-                    htmlType="submit"
-                    loading={profile?.update_loading}
-                  >
-                    Submit Changes
-                  </Button>
-                </div>
+      >
+        <Card style={{ width: "100%", overflow: "auto" }}>
+          <Title level={3}>Change your profile</Title>
+          <Form onFinish={handleSubmit}>
+            <Row gutter={[12, 12]}>
+              <Col xs={24}>
+                <Typography.Title level={5}>Email</Typography.Title>
+                <Input
+                  size="large"
+                  prefix={<UserOutlined />}
+                  placeholder="Email"
+                  value={userDetail?.email}
+                  disabled
+                />
               </Col>
-            </Col>
-          </Row>
-        </Form>
-      </Card>
-    </div>
+              <Col xs={24}>
+                <Typography.Title level={5}>Username</Typography.Title>
+                <Input
+                  size="large"
+                  prefix={<UserOutlined />}
+                  placeholder="User name"
+                  value={userDetail?.username}
+                  disabled
+                />
+              </Col>
+              <Col xs={24} sm={12}>
+                <Typography.Title level={5}>First name</Typography.Title>
+                <Input
+                  size="large"
+                  prefix={<UserOutlined />}
+                  placeholder="First Name"
+                  value={userDetail?.first_name}
+                  onChange={(event) =>
+                    setUserDetail((prevState) => ({
+                      ...prevState,
+                      first_name: event.target.value,
+                    }))
+                  }
+                />
+              </Col>
+              <Col xs={24} sm={12}>
+                <Typography.Title level={5}>Last Name</Typography.Title>
+                <Input
+                  size="large"
+                  prefix={<UserOutlined />}
+                  placeholder="Last Name"
+                  value={userDetail?.last_name}
+                  onChange={(event) =>
+                    setUserDetail((prevState) => ({
+                      ...prevState,
+                      last_name: event.target.value,
+                    }))
+                  }
+                />
+              </Col>
+              <Col xs={24} md={{ span: 12, offset: 12 }}>
+                <Col xs={24} md={24}>
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "flex-end",
+                      marginTop: "20px",
+                    }}
+                  >
+                    <Button
+                      type="primary"
+                      size="large"
+                      htmlType="submit"
+                      loading={profile?.update_loading}
+                    >
+                      Submit Changes
+                    </Button>
+                  </div>
+                </Col>
+              </Col>
+            </Row>
+          </Form>
+        </Card>
+      </div>
+    </Content>
   );
 };
 

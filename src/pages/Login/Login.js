@@ -1,6 +1,7 @@
 import React from "react";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
-import { Button, Checkbox, Form, Input, Flex, Card } from "antd";
+import { Button, Checkbox, Form, Input, Flex, Card, notification } from "antd";
+
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -10,21 +11,16 @@ const LoginPage = () => {
   const navigate = useNavigate();
 
   const onFinish = async (values) => {
-    try {
-      dispatch({
-        type: "USER_LOGGED_IN_REQUEST",
-        payload: {
-          email: values.email,
-          password: values.password,
-          onSuccess: () => {
-            console.log("Login was successful");
-            navigate("/");
-          },
+    dispatch({
+      type: "USER_LOGGED_IN_REQUEST",
+      payload: {
+        email: values.email,
+        password: values.password,
+        onSuccess: () => {
+          navigate("/");
         },
-      });
-    } catch (error) {
-      console.error("Login error:", error);
-    }
+      },
+    });
   };
 
   return (
@@ -44,7 +40,9 @@ const LoginPage = () => {
         style={{
           backgroundColor: "rgba(255, 255, 255, 0.8)",
         }}
-        title={<h2 style={{color: "#1677ff"}}>Login To the Admin Template</h2>}
+        title={
+          <h2 style={{ color: "#1677ff" }}>Login To the Admin Template</h2>
+        }
       >
         <Form
           name="login"
@@ -66,7 +64,13 @@ const LoginPage = () => {
               },
             ]}
           >
-            <Input size="large" prefix={<UserOutlined />} placeholder="Email" />
+            <Input
+              size="large"
+              name="username"
+              id="username"
+              prefix={<UserOutlined />}
+              placeholder="Email"
+            />
           </Form.Item>
           <Form.Item
             name="password"
@@ -82,6 +86,8 @@ const LoginPage = () => {
               prefix={<LockOutlined />}
               type="password"
               placeholder="Password"
+              name="password"
+              id="password"
             />
           </Form.Item>
           <Form.Item>

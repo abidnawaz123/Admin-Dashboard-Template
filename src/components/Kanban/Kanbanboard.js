@@ -14,6 +14,7 @@ import {
 import dayjs from "dayjs";
 import TicketDetailsModal from "./TicketDetailsModal/TicketDetailsModal";
 import { getColumnHeaderColors } from "./commons";
+import { Content } from "antd/es/layout/layout";
 
 const initialTasks = {
   open: [
@@ -61,113 +62,118 @@ const KanbanBoard = () => {
   const dateFormat = "YYYY/MM/DD";
 
   return (
-    <div
-      style={{
-        height: "calc(100vh - 70px)",
-        overflow: "auto",
-      }}
-    >
-      <DragDropContext onDragEnd={onDragEnd}>
-        <div className="kanban-board">
-          {Object.entries(tasks).map(([columnId, columnTasks]) => (
-            <Droppable key={columnId} droppableId={columnId}>
-              {(provided) => (
-                <div
-                  className="column"
-                  ref={provided.innerRef}
-                  {...provided.droppableProps}
-                >
-                  <h4
-                    style={{
-                      backgroundColor: getColumnHeaderColors(columnId),
-                      padding: "5px 5px",
-                      borderRadius: 5,
-                      color: "white",
-                      boxShadow: "0 2px 5px rgba(0, 0, 0, 0.1)",
-                    }}
+    <Content>
+      <div
+        style={{
+          height: "calc(100vh - 70px)",
+          overflow: "auto",
+        }}
+      >
+        <DragDropContext onDragEnd={onDragEnd}>
+          <div className="kanban-board">
+            {Object.entries(tasks).map(([columnId, columnTasks]) => (
+              <Droppable key={columnId} droppableId={columnId}>
+                {(provided) => (
+                  <div
+                    className="column"
+                    ref={provided.innerRef}
+                    {...provided.droppableProps}
                   >
-                    {columnId.toUpperCase()}
-                  </h4>
-                  {columnTasks.map((task, index) => (
-                    <div
-                      onClick={() => {
-                        setModalOpen(true);
-                        setTicketDetail({
-                          columnId,
-                          columnTasks,
-                          task,
-                        });
+                    <h4
+                      style={{
+                        backgroundColor: getColumnHeaderColors(columnId),
+                        padding: "5px 5px",
+                        borderRadius: 5,
+                        color: "white",
+                        boxShadow: "0 2px 5px rgba(0, 0, 0, 0.1)",
                       }}
                     >
-                      <Draggable
-                        key={task.id}
-                        draggableId={task.id}
-                        index={index}
+                      {columnId.toUpperCase()}
+                    </h4>
+                    {columnTasks.map((task, index) => (
+                      <div
+                        onClick={() => {
+                          setModalOpen(true);
+                          setTicketDetail({
+                            columnId,
+                            columnTasks,
+                            task,
+                          });
+                        }}
                       >
-                        {(provided) => (
-                          <div
-                            ref={provided.innerRef}
-                            {...provided.draggableProps}
-                            {...provided.dragHandleProps}
-                            className="task"
-                          >
+                        <Draggable
+                          key={task.id}
+                          draggableId={task.id}
+                          index={index}
+                        >
+                          {(provided) => (
                             <div
-                              style={{
-                                display: "flex",
-                                flexDirection: "column",
-                                justifyContent: "space-between",
-                                height: "100%",
-                              }}
+                              ref={provided.innerRef}
+                              {...provided.draggableProps}
+                              {...provided.dragHandleProps}
+                              className="task"
                             >
-                              <div>
-                                <p>{task.content}</p>
-                              </div>
                               <div
                                 style={{
                                   display: "flex",
-                                  alignItems: "center",
-                                  justifyContent: "space-around",
+                                  flexDirection: "column",
+                                  justifyContent: "space-between",
+                                  height: "100%",
                                 }}
                               >
-                                <Avatar>U</Avatar>
-                                <DatePicker
-                                  size="small"
+                                <div>
+                                  <p>{task.content}</p>
+                                </div>
+                                <div
                                   style={{
-                                    width: "110px",
+                                    display: "flex",
+                                    alignItems: "center",
+                                    justifyContent: "space-around",
                                   }}
-                                  disabled
-                                  defaultValue={dayjs("2015/01/01", dateFormat)}
-                                  format={dateFormat}
-                                />
-                                <p>normal</p>
+                                >
+                                  <Avatar>U</Avatar>
+                                  <DatePicker
+                                    size="small"
+                                    style={{
+                                      width: "110px",
+                                    }}
+                                    disabled
+                                    defaultValue={dayjs(
+                                      "2015/01/01",
+                                      dateFormat
+                                    )}
+                                    format={dateFormat}
+                                  />
+                                  <p>normal</p>
+                                </div>
                               </div>
                             </div>
-                          </div>
-                        )}
-                      </Draggable>
-                    </div>
-                  ))}
-                  {provided.placeholder}
-                </div>
-              )}
-            </Droppable>
-          ))}
-        </div>
-      </DragDropContext>
-      <Modal
-        width="100%"
-        open={modalOpen}
-        onCancel={handleCloseModal}
-        title="Detail of the task"
-        style={{
-          top: 10,
-          height: "calc(100vh - 20px)",
-        }}
-        footer={false}
-      >
-        <TicketDetailsModal tasks={tasks} ticketDetail={ticketDetail} />
-      </Modal>
-    </div>
+                          )}
+                        </Draggable>
+                      </div>
+                    ))}
+                    {provided.placeholder}
+                  </div>
+                )}
+              </Droppable>
+            ))}
+          </div>
+        </DragDropContext>
+        <Modal
+          width="100%"
+          open={modalOpen}
+          onCancel={handleCloseModal}
+          title="Detail of the task"
+          style={{
+            top: 10,
+            height: "calc(100vh - 20px)",
+          }}
+          footer={false}
+        >
+          <TicketDetailsModal tasks={tasks} ticketDetail={ticketDetail} />
+        </Modal>
+      </div>
+    </Content>
   );
 };
 

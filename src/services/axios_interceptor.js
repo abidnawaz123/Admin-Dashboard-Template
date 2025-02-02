@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { notification } from "antd";
 
 const API_URL = "http://localhost:8000/";
 
@@ -26,7 +26,13 @@ axiosInstance.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response && error.response.status == 401) {
-      window.location.href = "/login";
+      console.log('error ==>',error)
+      notification.open({
+        message: error?.message || "",
+        description: error?.response?.data?.error || "",
+        type: "error",
+      });
+      // window.location.href = "/login";
     }
     return Promise.reject(error);
   }

@@ -10,6 +10,7 @@ import LoginPage from "./pages/Login/Login";
 import { useEffect } from "react";
 import ProtectedRoute from "./pages/ProtecedRoute";
 import KanbanBoard from "./components/Kanban/Kanbanboard";
+import WelcomePage from "./pages/theme/MyTheme";
 
 function App() {
   const router = createBrowserRouter([
@@ -41,6 +42,14 @@ function App() {
             </ProtectedRoute>
           ),
         },
+        {
+          path: "theme",
+          element: (
+            <ProtectedRoute>
+              <WelcomePage/>
+            </ProtectedRoute>
+          )
+        }
       ],
     },
     {
