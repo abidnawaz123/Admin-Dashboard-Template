@@ -12,7 +12,7 @@ function* getUserProfileDetails(action) {
     if (profile?.data) {
       yield put({
         type: "GET_ASSIGNED_PROJECTS_REQUEST",
-        payload: profile?.data?.first_name,
+        payload: profile?.data?.id,
       });
     }
   } catch (error) {
