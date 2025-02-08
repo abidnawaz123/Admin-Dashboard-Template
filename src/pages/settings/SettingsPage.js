@@ -12,6 +12,7 @@ import React, { useEffect, useState } from "react";
 import { UserOutlined } from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
 import { Content } from "antd/es/layout/layout";
+import CustomLoader from "../../components/CustomLoader/CustomLoader";
 
 const { Title } = Typography;
 
@@ -27,7 +28,6 @@ const SettingsPage = () => {
       last_name: userDetail?.last_name,
     };
     dispatch({ type: "UPDATE_USER_DETAIL_REQUEST", payload });
-    console.log("payload are =>", payload);
   };
   const profile = useSelector((state) => state.profile.userDetail);
 
@@ -38,6 +38,9 @@ const SettingsPage = () => {
       setUserDetail(profile?.userDetail);
     }
   }, [profile]);
+  if (profile?.loading) {
+    return <CustomLoader />;
+  }
 
   if (!profile) {
     return (
@@ -56,9 +59,9 @@ const SettingsPage = () => {
   return (
     <Content>
       <div
-      style={{
-        padding: 20
-      }}
+        style={{
+          padding: 20,
+        }}
       >
         <Card style={{ width: "100%", overflow: "auto" }}>
           <Title level={3}>Change your profile</Title>

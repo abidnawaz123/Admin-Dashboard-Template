@@ -12,10 +12,11 @@ import {
 } from "@ant-design/icons";
 import { motion } from "framer-motion";
 import { Content } from "antd/es/layout/layout";
+import { useSelector } from "react-redux";
 
 const { Title, Text } = Typography;
 
-const WelcomePage = () => {
+const WelcomePage = ({ firstName, lastName }) => {
   // Static employee and project data
   const employee = {
     name: "John Doe",
@@ -26,10 +27,13 @@ const WelcomePage = () => {
     tasksCompleted: 10,
     totalTasks: 15,
     workHours: 38,
-    contact: "johndoe@example.com",
+    contact: "adminforinfo@gmail.com",
     phone: "+123 456 789",
     status: "Active",
   };
+
+  const projectDetail = useSelector((state) => state?.projects?.projectDetails);
+  console.log("projectDetail now =>", projectDetail);
 
   return (
     <Content>
@@ -39,15 +43,14 @@ const WelcomePage = () => {
             <Card
               style={{
                 padding: "30px",
-                boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)", // Soft shadows for depth
+                boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)",
                 margin: 20,
-                backgroundColor: "#ffffff", // Clean, white background
-                border: "1px solid #d9d9d9", // Light border for distinction
-                borderRadius: "8px", // Slightly rounded corners for elegance
+                backgroundColor: "#ffffff",
+                border: "1px solid #d9d9d9",
+                borderRadius: "8px",
               }}
               bordered={false}
             >
-              {/* Header Animation with smooth fade-in */}
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -57,13 +60,13 @@ const WelcomePage = () => {
                   level={2}
                   style={{
                     textAlign: "center",
-                    color: "#001529", // Dark navy for elegance
+                    color: "#001529",
                     fontFamily:
                       "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
                     fontWeight: "600",
                   }}
                 >
-                  Welcome, {employee.name}!
+                  Welcome, {`${firstName} ${lastName}`}!
                 </Title>
                 <Text
                   style={{
@@ -80,7 +83,6 @@ const WelcomePage = () => {
 
               <Divider style={{ borderColor: "#e8e8e8", margin: "20px 0" }} />
 
-              {/* Project and Tasks Section */}
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -108,10 +110,21 @@ const WelcomePage = () => {
                     marginBottom: "20px",
                   }}
                 >
-                  You’re working on the <strong>{employee.project}</strong>{" "}
-                  project. Keep up the great work!
+                  You’re working on the{" "}
+                  {projectDetail?.project?.map((item) => (
+                    <strong>{item.name}</strong>
+                  ))}
+                  . Keep up the great work!
                 </Text>
-
+                <Row
+                  justify="start"
+                  align="middle"
+                  style={{ marginBottom: "15px" }}
+                >
+                  {projectDetail?.project?.map((item) => (
+                    <Text>{item.description}</Text>
+                  ))}
+                </Row>
                 <Row
                   justify="start"
                   align="middle"
@@ -166,7 +179,6 @@ const WelcomePage = () => {
 
               <Divider style={{ borderColor: "#e8e8e8", margin: "20px 0" }} />
 
-              {/* Contact Info */}
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -194,7 +206,10 @@ const WelcomePage = () => {
                     marginBottom: "20px",
                   }}
                 >
-                  Managed by: <strong>{employee.manager}</strong>
+                  Managed by:{" "}
+                  {projectDetail?.project?.map((item) => (
+                    <strong>{item.lead.name}</strong>
+                  ))}
                 </Text>
 
                 <Row
