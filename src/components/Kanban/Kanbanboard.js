@@ -3,12 +3,8 @@ import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
 import "./style.css";
 import {
   Avatar,
-  Button,
-  Col,
   DatePicker,
   Modal,
-  Row,
-  Typography,
 } from "antd/es";
 
 import dayjs from "dayjs";
@@ -17,28 +13,19 @@ import { getColumnHeaderColors } from "./commons";
 import { Content } from "antd/es/layout/layout";
 import { useDispatch, useSelector } from "react-redux";
 
-// const initialTasks = {
-//   open: [
-//     { id: "task-4", content: "Task 4" },
-//     { id: "task-5", content: "Task 5" },
-//   ],
-
-//   inProgress: [{ id: "task-3", content: "Task 3" }],
-//   completed: [],
-//   closed: [
-//     { id: "task-1", content: "Task 1" },
-//     { id: "task-2", content: "Task 2" },
-//   ],
-//   inReview: [
-//     { id: "task-6", content: "Task 6" },
-//     { id: "task-7", content: "Task 7" },
-//   ],
-// };
+const COLUMN_ORDER = [
+  { id: 1, columnName: "open" },
+  { id: 2, columnName: "inProgress" },
+  { id: 3, columnName: "completed" },
+  { id: 4, columnName: "closed" },
+  { id: 5, columnName: "inReview" },
+];
 
 const KanbanBoard = () => {
   const [tasks, setTasks] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
-  const [ticketDetail, setTicketDetail] = useState(null);
+  const [taskDetail, setTaskDetail] = useState(null);
+
   const dispatch = useDispatch();
 
   const userProfile = useSelector((state) => state?.profile?.userDetail);
@@ -59,14 +46,6 @@ const KanbanBoard = () => {
     }
   }, [tickets]);
 
-  const COLUMN_ORDER = [
-    "open",
-    "inProgress",
-    "completed",
-    "closed",
-    "inReview",
-  ];
-
   useEffect(() => {
     dispatch({ type: "GET_USER_DETAIL_REQUEST" });
   }, []);
@@ -83,18 +62,6 @@ const KanbanBoard = () => {
   const onDragEnd = (result) => {
     const draggableID = Number(result?.draggableId);
     if (!result.destination) return;
-
-    const { source, destination } = result;
-    const sourceColumn = tasks[source.droppableId];
-    const destColumn = tasks[destination.droppableId];
-
-    // Remove item from source
-    const [movedTask] = sourceColumn?.splice(source.index, 1);
-
-    // Add item to destination
-    destColumn?.splice(destination.index, 0, movedTask);
-
-    setTasks({ ...tasks });
     dispatch({
       type: "UPDATE_TICKET_REQUEST",
       payload: {
@@ -124,10 +91,10 @@ const KanbanBoard = () => {
         <DragDropContext onDragEnd={onDragEnd}>
           <div className="kanban-board">
             {tasks &&
-              COLUMN_ORDER.map((columnId) => {
-                const columnTasks = tasks[columnId] || []; // Handle empty columns gracefully
+              COLUMN_ORDER.map((column) => {
+                const columnTasks = tasks[column.columnName] || []; // Handle empty columns gracefully
                 return (
-                  <Droppable key={columnId} droppableId={columnId}>
+                  <Droppable key={column.id} droppableId={column.columnName}>
                     {(provided) => (
                       <div
                         className="column"
@@ -136,21 +103,29 @@ const KanbanBoard = () => {
                       >
                         <h4
                           style={{
-                            backgroundColor: getColumnHeaderColors(columnId),
+                            backgroundColor: getColumnHeaderColors(
+                              column.columnName
+                            ),
                             padding: "5px 5px",
                             borderRadius: 5,
                             color: "white",
                             boxShadow: "0 2px 5px rgba(0, 0, 0, 0.1)",
                           }}
                         >
-                          {columnId.toUpperCase()}
+                          {column.columnName.toUpperCase()}
                         </h4>
                         {columnTasks.map((task, index) => (
                           <div
                             key={task.id}
                             onClick={() => {
+                              setTaskDetail({
+                                task_id: task.id,
+                                task,
+                                column: column.columnName,
+                                columnTasks,
+                                index,
+                              });
                               setModalOpen(true);
-                              setTicketDetail({ columnId, columnTasks, task });
                             }}
                           >
                             <Draggable
@@ -226,7 +201,7 @@ const KanbanBoard = () => {
           }}
           footer={false}
         >
-          <TicketDetailsModal tasks={tasks} ticketDetail={ticketDetail} />
+          <TicketDetailsModal taskDetail={taskDetail} columns={COLUMN_ORDER} />
         </Modal>
       </div>
     </Content>

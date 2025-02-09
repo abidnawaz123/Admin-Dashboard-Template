@@ -3,52 +3,51 @@ import {
   CheckOutlined,
   FlagFilled,
   FlagOutlined,
-  ManOutlined,
   UserOutlined,
 } from "@ant-design/icons";
-import { Divider, Dropdown, Space, Tag } from "antd";
-import {
-  Avatar,
-  Button,
-  Col,
-  DatePicker,
-  Modal,
-  Row,
-  Typography,
-  Input,
-} from "antd/es";
+import { Dropdown, Space, Tag } from "antd";
+import { Avatar, Button, Col, DatePicker, Row, Input } from "antd/es";
 import dayjs from "dayjs";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TicketDetailPageTabs from "../TickerDetailPageTabs/TicketDetailPageTabs";
 import { getColumnHeaderColors } from "../commons";
 
 const { TextArea } = Input;
 
-const TicketDetailsModal = ({ tasks, ticketDetail }) => {
-  const menuItems = Object.keys(tasks);
-  const [selectedKey, setSelectedKey] = useState("");
+const TicketDetailsModal = ({ taskDetail, columns }) => {
+  const { column, columnTasks, index, task, task_id } = taskDetail;
+
+  const [selectedKey, setSelectedKey] = useState(null);
   const [commentText, setCommentText] = useState("");
   const [allComments, setAllComments] = useState([]);
 
-  const items = menuItems.map((item, index) => ({
-    key: (index + 1).toString(),
-    label: (
-      <div
-        style={{
-          width: "200px",
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
-        onClick={() => {
-          setSelectedKey((index + 1).toString());
-        }}
-      >
-        <p>{item.toUpperCase()}</p>{" "}
-        {selectedKey === (index + 1).toString() ? <CheckOutlined /> : null}
-      </div>
-    ),
-  }));
+  useEffect(() => {
+    setSelectedKey(
+      (columns.findIndex((item) => item.columnName == column) + 1).toString()
+    );
+  }, [taskDetail]);
+
+  const items = columns.map((item, index) => {
+    return {
+      key: (index + 1).toString(),
+      label: (
+        <div
+          style={{
+            width: "200px",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+          onClick={() => {
+            setSelectedKey((index + 1).toString());
+          }}
+        >
+          <p>{item.columnName.toUpperCase()}</p>{" "}
+          {item.columnName === task?.status ? <CheckOutlined /> : null}
+        </div>
+      ),
+    };
+  });
 
   return (
     <>
@@ -65,13 +64,14 @@ const TicketDetailsModal = ({ tasks, ticketDetail }) => {
             }}
           >
             <p style={{ fontSize: 20 }}>
-              Hello this is ticket number{" "}
+              {task?.heading}
               <span
                 style={{
                   fontWeight: "bold",
                 }}
               >
-                {ticketDetail?.task?.content}
+                hola content ???
+                {/* {ticketDetail?.task?.content} */}
               </span>
             </p>
             <Row gutter={20} align="middle">
@@ -94,17 +94,12 @@ const TicketDetailsModal = ({ tasks, ticketDetail }) => {
                   >
                     <Button
                       style={{
-                        backgroundColor: getColumnHeaderColors(
-                          menuItems[selectedKey - 1]
-                        ),
+                        backgroundColor: getColumnHeaderColors(task?.status),
                         color: "white",
                       }}
                       icon={<CaretRightOutlined />}
                     >
-                      {selectedKey
-                        ? menuItems[selectedKey - 1].toUpperCase()
-                        : ticketDetail?.columnId &&
-                          ticketDetail?.columnId.toUpperCase()}
+                      {task?.status?.toUpperCase()}
                     </Button>
                   </Dropdown>
                 </div>

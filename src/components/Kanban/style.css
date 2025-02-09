@@ -1,4 +1,5 @@
 .kanban-board {
+  overflow: "auto";
   display: flex;
   gap: 20px;
   padding: 20px;
@@ -6,6 +7,7 @@
 
 .column {
   width: 250px;
+  min-width: 250px;
   background: #fbfbfb;
   padding: 10px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
