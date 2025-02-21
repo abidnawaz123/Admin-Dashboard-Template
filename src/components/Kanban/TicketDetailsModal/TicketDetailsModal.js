@@ -11,15 +11,23 @@ import dayjs from "dayjs";
 import { useEffect, useState } from "react";
 import TicketDetailPageTabs from "../TickerDetailPageTabs/TicketDetailPageTabs";
 import { getColumnHeaderColors } from "../commons";
+import { useDispatch, useSelector } from "react-redux";
 
 const { TextArea } = Input;
 
 const TicketDetailsModal = ({ taskDetail, columns }) => {
+
+  const dispatch = useDispatch();
+
   const { column, columnTasks, index, task, task_id } = taskDetail;
 
   const [selectedKey, setSelectedKey] = useState(null);
   const [commentText, setCommentText] = useState("");
   const [allComments, setAllComments] = useState([]);
+  const [currentTaskStatus, setCurrentTaskStatus] = useState(task?.status?.toUpperCase());
+
+  const userProfile = useSelector((state) => state?.profile?.userDetail);
+
 
   useEffect(() => {
     setSelectedKey(
@@ -40,10 +48,22 @@ const TicketDetailsModal = ({ taskDetail, columns }) => {
           }}
           onClick={() => {
             setSelectedKey((index + 1).toString());
+            setCurrentTaskStatus(item.columnName.toUpperCase());
+            dispatch({
+              type: "UPDATE_TICKET_REQUEST",
+              payload: {
+                id: task.id,
+                user_id: userProfile?.userDetail?.id,
+                data: {
+                  status: item.columnName,
+                },
+              },
+            });
+
           }}
         >
           <p>{item.columnName.toUpperCase()}</p>{" "}
-          {item.columnName === task?.status ? <CheckOutlined /> : null}
+          {item.columnName.toUpperCase() === currentTaskStatus ? <CheckOutlined /> : null}
         </div>
       ),
     };
@@ -94,12 +114,12 @@ const TicketDetailsModal = ({ taskDetail, columns }) => {
                   >
                     <Button
                       style={{
-                        backgroundColor: getColumnHeaderColors(task?.status),
+                        backgroundColor: getColumnHeaderColors(currentTaskStatus),
                         color: "white",
                       }}
                       icon={<CaretRightOutlined />}
                     >
-                      {task?.status?.toUpperCase()}
+                      {currentTaskStatus}
                     </Button>
                   </Dropdown>
                 </div>

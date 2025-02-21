@@ -1,14 +1,14 @@
 export const getColumnHeaderColors = (columnHeaderName) => {
   switch (columnHeaderName) {
-    case "open":
+    case "OPEN":
       return "grey";
-    case "inProgress":
+    case "INPROGRESS":
       return "pink";
-    case "pending":
+    case "PENDING":
       return "#FFC53D";
-    case "completed":
+    case "COMPLETED":
       return "green";
-    case "closed":
+    case "CLOSED":
       return "red";
     default:
       return "black";

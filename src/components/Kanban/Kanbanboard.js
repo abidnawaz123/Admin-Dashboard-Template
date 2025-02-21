@@ -104,7 +104,7 @@ const KanbanBoard = () => {
                         <h4
                           style={{
                             backgroundColor: getColumnHeaderColors(
-                              column.columnName
+                              column.columnName.toUpperCase()
                             ),
                             padding: "5px 5px",
                             borderRadius: 5,
