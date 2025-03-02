@@ -3,8 +3,15 @@ import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
 import "./style.css";
 import {
   Avatar,
+  Card,
   DatePicker,
+  Divider,
+  Dropdown,
+  Input,
   Modal,
+  Row,
+  Space,
+  Typography,
 } from "antd/es";
 
 import dayjs from "dayjs";
@@ -12,6 +19,10 @@ import TicketDetailsModal from "./TicketDetailsModal/TicketDetailsModal";
 import { getColumnHeaderColors } from "./commons";
 import { Content } from "antd/es/layout/layout";
 import { useDispatch, useSelector } from "react-redux";
+import { Button } from "antd";
+import TextArea from "antd/es/input/TextArea";
+import { DownOutlined, FileOutlined, TeamOutlined } from "@ant-design/icons";
+
 
 const COLUMN_ORDER = [
   { id: 1, columnName: "open" },
@@ -25,6 +36,9 @@ const KanbanBoard = () => {
   const [tasks, setTasks] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
   const [taskDetail, setTaskDetail] = useState(null);
+
+  const [addTicketModal, setAddTicketModal] = useState(false);
+  const [showDescriptionPanel, setShowDescriptionPanel] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -80,6 +94,32 @@ const KanbanBoard = () => {
 
   const dateFormat = "YYYY/MM/DD";
 
+  const items = [
+    {
+      label: (
+        <a href="https://www.antgroup.com" target="_blank" rel="noopener noreferrer">
+          Person 1
+        </a>
+      ),
+      key: '0',
+    },
+    {
+      label: (
+        <a href="https://www.aliyun.com" target="_blank" rel="noopener noreferrer">
+          Person 2
+        </a>
+      ),
+      key: '1',
+    },
+    {
+      type: 'divider',
+    },
+    {
+      label: 'Person 3',
+      key: '3',
+    },
+  ];
+
   return (
     <Content>
       <div
@@ -88,6 +128,19 @@ const KanbanBoard = () => {
           overflow: "auto",
         }}
       >
+        <div style={{
+          textAlign: "right",
+          padding: 10,
+          boxShadow: "0 2px 5px rgba(0, 0, 0, 0.1)",
+        }}>
+          <Button
+            style={{
+              backgroundColor: "purple",
+              color: "white",
+            }}
+            onClick={() => setAddTicketModal(prevState => !prevState)}
+          >Add Task</Button>
+        </div>
         <DragDropContext onDragEnd={onDragEnd}>
           <div className="kanban-board">
             {tasks &&
@@ -104,7 +157,7 @@ const KanbanBoard = () => {
                         <h4
                           style={{
                             backgroundColor: getColumnHeaderColors(
-                              column.columnName
+                              column.columnName.toUpperCase()
                             ),
                             padding: "5px 5px",
                             borderRadius: 5,
@@ -202,6 +255,66 @@ const KanbanBoard = () => {
           footer={false}
         >
           <TicketDetailsModal taskDetail={taskDetail} columns={COLUMN_ORDER} />
+        </Modal>
+
+        <Modal
+          open={addTicketModal}
+          onCancel={() => { setAddTicketModal(false) }}
+          title={<div style={{
+            padding: "10px 10px 0 10px"
+          }}>Add New Tasks</div>}
+          style={{
+            top: 10,
+            height: "calc(100vh - 20px)",
+            padding: 0,
+          }}
+          footer={
+            <>
+              <Divider />
+              <Row style={{
+                justifyContent: "flex-end",
+                padding: "10px"
+              }}>
+                <Button type="primary">Create Task</Button>
+              </Row>
+            </>
+          }
+        >
+          <div style={{
+            padding: 20
+          }}>
+            <Input type="text" />
+            <Row style={{
+              gap: 10,
+              cursor: "pointer",
+              padding: "10px 0",
+              userSelect: "none"
+            }}
+              onClick={() => { setShowDescriptionPanel(prevState => !prevState) }}
+            >
+              <FileOutlined />
+              <Typography>Add Description</Typography>
+            </Row>
+            {showDescriptionPanel &&
+              <TextArea
+                rows={10} placeholder="Write something here regarding your ticket" />
+            }
+
+            <div style={{
+              padding: "10px 0",
+            }}>
+              <Dropdown
+                menu={{ items }}
+                trigger={['click']}
+              >
+                <a onClick={(e) => e.preventDefault()}>
+                  <Space>
+                    <Button icon={<TeamOutlined />}>Assignee</Button>
+                  </Space>
+                </a>
+              </Dropdown>
+            </div>
+          </div>
         </Modal>
       </div>
     </Content>
