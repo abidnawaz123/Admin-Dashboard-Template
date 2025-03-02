@@ -5,7 +5,7 @@ import {
   FlagOutlined,
   UserOutlined,
 } from "@ant-design/icons";
-import { Dropdown, Space, Tag } from "antd";
+import { Dropdown, Space, Tag, Tooltip } from "antd";
 import { Avatar, Button, Col, DatePicker, Row, Input } from "antd/es";
 import dayjs from "dayjs";
 import { useEffect, useState } from "react";
@@ -15,6 +15,8 @@ import { getColumnHeaderColors } from "../commons";
 const { TextArea } = Input;
 
 const TicketDetailsModal = ({ taskDetail, columns }) => {
+  console.log('taskDetail', taskDetail);
+
   const { column, columnTasks, index, task, task_id } = taskDetail;
 
   const [selectedKey, setSelectedKey] = useState(null);
@@ -49,6 +51,22 @@ const TicketDetailsModal = ({ taskDetail, columns }) => {
     };
   });
 
+  const ConvertDateToUserFriendlyTime = (givenDate) => {
+    const date = new Date(givenDate);
+    const formattedDate = date.toLocaleString('en-US', {
+      weekday: 'long', // Long format for weekday (e.g., "Friday")
+      year: 'numeric',
+      month: 'long', // Long format for month (e.g., "February")
+      day: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+      second: 'numeric',
+      hour12: true // Use 12-hour format (e.g., "PM")
+  });
+
+  return formattedDate;
+  }
+
   return (
     <>
       <Row>
@@ -60,7 +78,6 @@ const TicketDetailsModal = ({ taskDetail, columns }) => {
           <div
             style={{
               padding: "0 20px",
-              // boxShadow: "0 0px 2px rgba(0, 0, 0, 0.1)",
             }}
           >
             <p style={{ fontSize: 20 }}>
@@ -70,8 +87,6 @@ const TicketDetailsModal = ({ taskDetail, columns }) => {
                   fontWeight: "bold",
                 }}
               >
-                hola content ???
-                {/* {ticketDetail?.task?.content} */}
               </span>
             </p>
             <Row gutter={20} align="middle">
@@ -122,7 +137,14 @@ const TicketDetailsModal = ({ taskDetail, columns }) => {
                     <UserOutlined />
                     <p>Assignees</p>
                   </div>
-                  <Avatar>U</Avatar>
+                  {task?.assigned_employee?.map(employee => (
+                    <Avatar.Group>
+                      <Tooltip title={employee?.first_name} placement="top">
+                        <Avatar icon={<UserOutlined />}></Avatar>
+                      </Tooltip>
+                    </Avatar.Group>
+                  ))}
+
                 </div>
               </Col>
 
@@ -136,7 +158,7 @@ const TicketDetailsModal = ({ taskDetail, columns }) => {
                 >
                   <p>Dates </p>
                   <DatePicker
-                    defaultValue={dayjs("2015/01/01", "YYYY/MM/DD")}
+                    defaultValue={dayjs(task?.time_estimated, "YYYY/MM/DD")}
                     format={"YYYY/MM/DD"}
                   />
                 </div>
@@ -172,7 +194,7 @@ const TicketDetailsModal = ({ taskDetail, columns }) => {
                         fontSize: "20px",
                       }}
                     />
-                    <p>Normal</p>
+                    <p>{task?.priority}</p>
                   </div>
                 </div>
               </Col>
@@ -185,8 +207,8 @@ const TicketDetailsModal = ({ taskDetail, columns }) => {
                     gap: 20,
                   }}
                 >
-                  <p>Time Estimate </p>
-                  <p>1h</p>
+                  <p>Time Estimate:</p>
+                  <p><b>{ConvertDateToUserFriendlyTime(task?.time_estimated)}</b></p>
                 </div>
               </Col>
               <Col xs={24} md={12}>
@@ -208,16 +230,14 @@ const TicketDetailsModal = ({ taskDetail, columns }) => {
                     <p>Tags</p>
                   </div>
                   <div>
-                    <Tag color="red-inverse">bug fix</Tag>
-                    <Tag color="blue-inverse">feature</Tag>
-                    <Tag color="gold">gold</Tag>
+                    {task?.tags?.map(item => (<Tag>{item}</Tag>))}
                   </div>
                 </div>
               </Col>
             </Row>
           </div>
           <div style={{ margin: " 10px 20px 10px 0" }}>
-            <TextArea rows={10} />
+            <TextArea rows={10} value={task?.description} readOnly />
           </div>
 
           <TicketDetailPageTabs />
