@@ -1,5 +1,5 @@
 .kanban-board {
-  overflow: "auto";
+  overflow: auto;
   display: flex;
   gap: 20px;
   padding: 20px;

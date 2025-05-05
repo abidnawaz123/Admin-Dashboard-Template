@@ -11,6 +11,7 @@ import { useEffect } from "react";
 import ProtectedRoute from "./pages/ProtecedRoute";
 import KanbanBoard from "./components/Kanban/Kanbanboard";
 import WelcomePage from "./pages/EmployeeWelcome/EmployeeWelcomePage";
+import ProjectDetails from "./pages/ProjectDetails/ProjectDetails";
 
 function App() {
   const router = createBrowserRouter([
@@ -47,6 +48,14 @@ function App() {
           element: (
             <ProtectedRoute>
               <WelcomePage/>
+            </ProtectedRoute>
+          )
+        },
+        {
+          path: "project-details",
+          element: (
+            <ProtectedRoute>
+              <ProjectDetails/>
             </ProtectedRoute>
           )
         }
