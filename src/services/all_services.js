@@ -1,8 +1,8 @@
 import axiosInstance from "./axios_interceptor";
 
-export const getProjects = async (employee_id) => {
+export const getProjects = async (data) => {
   const response = await axiosInstance.get(
-    `assignedproject?employee_id=${employee_id}`
+    `assignedproject?employee_id=${data.id}&is_admin=${data.role}`
   );
   if (response.status === 200) {
     return response;

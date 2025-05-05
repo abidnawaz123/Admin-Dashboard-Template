@@ -12,7 +12,10 @@ function* getUserProfileDetails(action) {
     if (profile?.data) {
       yield put({
         type: "GET_ASSIGNED_PROJECTS_REQUEST",
-        payload: profile?.data?.id,
+        payload: {
+          id: profile?.data?.id,
+          role: profile?.data?.role
+        },
       });
     }
   } catch (error) {
