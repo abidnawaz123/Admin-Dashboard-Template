@@ -1,32 +1,40 @@
-import React, { useState } from "react";
+import React from "react";
 import { Menu } from "antd";
 import {
   ContainerOutlined,
   DesktopOutlined,
   PieChartOutlined,
-  ProjectOutlined, // Added ProjectOutlined
+  ProjectOutlined,
 } from "@ant-design/icons";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const MenuItems = () => {
-  const [selectedKey, setSelectedKey] = useState(["1"]);
   const navigate = useNavigate();
+  const location = useLocation();
+
+  // Determine the selected key based on current path
+  const getSelectedKey = (pathname) => {
+    if (pathname.includes("kanban")) return ["2"];
+    if (pathname.includes("settings")) return ["3"];
+    if (pathname.includes("theme")) return ["4"];
+    if (pathname.includes("project-details")) return ["5"];
+    return ["1"]; // Default to Dashboard
+  };
+
+  const selectedKey = getSelectedKey(location.pathname);
 
   const handleMenuItemClick = (item) => {
-    setSelectedKey([item.key]);
     switch (item.key) {
       case "1":
         return navigate("/");
       case "2":
-        return navigate("kanban/");
+        return navigate("/kanban");
       case "3":
-        return navigate("settings/");
+        return navigate("/settings");
       case "4":
-        return;
+        return navigate("/theme");
       case "5":
-        return navigate("theme");
-      case "6": // New case for Project Details
-        return navigate("project-details");
+        return navigate("/project-details");
       default:
         return navigate("/");
     }
@@ -51,15 +59,10 @@ const MenuItems = () => {
     {
       key: "4",
       icon: <ContainerOutlined />,
-      label: "More",
-    },
-    {
-      key: "5",
-      icon: <ContainerOutlined />,
       label: "Option 5",
     },
     {
-      key: "6", // New menu item
+      key: "5",
       icon: <ProjectOutlined />,
       label: "Project Details",
     },
@@ -68,7 +71,7 @@ const MenuItems = () => {
   return (
     <div style={{ marginTop: "20px" }}>
       <Menu
-        defaultSelectedKeys={selectedKey}
+        selectedKeys={selectedKey}
         mode="inline"
         items={items}
         onClick={handleMenuItemClick}
