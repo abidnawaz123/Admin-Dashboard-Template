@@ -1,8 +1,9 @@
-import React, { useEffect } from "react";
-import { Card, Avatar, Tag, Typography, Row, Col, Statistic, Divider } from "antd";
+import React, { useEffect, useState } from "react";
+import { Card, Avatar, Tag, Typography, Row, Col, Statistic, Divider, Button } from "antd";
 import { UserOutlined, ProjectOutlined } from "@ant-design/icons";
 import "./ProjectDetails.css";
 import { useDispatch, useSelector } from "react-redux";
+import AddProjectModal from "./AddProjectModal/AddProjectModal";
 
 const { Title, Text } = Typography;
 
@@ -10,6 +11,8 @@ const ProjectDetails = () => {
 
   const project_data = useSelector((state) => state?.projects?.projectDetails);
   const dispatch = useDispatch();
+  const [isModalVisible, setModalVisible] = useState(false);
+
 
   useEffect(() => {
     dispatch({ type: "GET_USER_DETAIL_REQUEST" });
@@ -17,6 +20,15 @@ const ProjectDetails = () => {
 
   return (
     <div className="project-details-container">
+      <div>
+        <Button
+          style={{
+            // backgroundColor: "purple",
+            // color: "white",
+          }}
+          onClick={() => setModalVisible(true)}
+        >Add New Project</Button>
+      </div>
       <div className="total-projects-statistic">
         <Statistic
           title={<Text className="statistic-title">Your Company Has Total Projects</Text>}
@@ -71,6 +83,8 @@ const ProjectDetails = () => {
         ))
         }
       </div>
+      <AddProjectModal visible={isModalVisible} onCancel={() => setModalVisible(false)} />
+
     </div>
   );
 };
