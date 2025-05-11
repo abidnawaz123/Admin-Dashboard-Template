@@ -10,22 +10,26 @@ const { Title, Text } = Typography;
 const ProjectDetails = () => {
 
   const project_data = useSelector((state) => state?.projects?.projectDetails);
+
+  const all_leads = useSelector((state) => state?.leads?.allLeads)
+  const all_employees = useSelector((state) => state?.employees.allEmployees)
+  console.log("lead is ==>", all_employees)
+
   const dispatch = useDispatch();
   const [isModalVisible, setModalVisible] = useState(false);
 
 
   useEffect(() => {
     dispatch({ type: "GET_USER_DETAIL_REQUEST" });
+    dispatch({ type: "GET_ALL_LEADS_REQUEST" });
+    dispatch({ type: "GET_ALL_EMPLOYEES_REQUEST" });
   }, []);
 
   return (
     <div className="project-details-container">
       <div>
         <Button
-          style={{
-            // backgroundColor: "purple",
-            // color: "white",
-          }}
+          type="primary"
           onClick={() => setModalVisible(true)}
         >Add New Project</Button>
       </div>
@@ -40,6 +44,11 @@ const ProjectDetails = () => {
       <div>
         {project_data?.project?.map((project, index) => (
           <Card key={project.id} title={<Title level={3} className="project-title">{project.name}</Title>} className="project-card" >
+            <div>
+              <i>
+                {project.description}
+              </i>
+            </div>
 
             <Row gutter={16} align="middle">
               <Col md={6} sm={24}>
@@ -62,13 +71,23 @@ const ProjectDetails = () => {
                   project.lead.team.map((employee) => {
                     return (
                       <Card key={employee.name} size="small" className={`employee-card ${employee.employee_name.toLowerCase()}`}>
-                        <Avatar size="small" icon={<UserOutlined />} className="employee-avatar" />
-                        <Text strong className="employee-name">
-                          {employee.employee_name}
-                        </Text>
-                        <Tag className={`status-tag ${employee.employee_status.toLowerCase()}`}>
-                          {employee.employee_status}
-                        </Tag>
+                        <div style={{
+                          display: "flex"
+                        }}>
+                          <Avatar size="small" icon={<UserOutlined />} className="employee-avatar" />
+                          <div style={{
+                            width: "100%",
+                            display: "flex",
+                            justifyContent: "space-between"
+                          }}>
+                            <Text strong className="employee-name">
+                              {employee.employee_name}
+                            </Text>
+                            <Tag className={`status-tag ${employee.employee_status.toLowerCase()}`}>
+                              {employee.employee_status}
+                            </Tag>
+                          </div>
+                        </div>
                       </Card>
                     )
                   })
@@ -83,7 +102,12 @@ const ProjectDetails = () => {
         ))
         }
       </div>
-      <AddProjectModal visible={isModalVisible} onCancel={() => setModalVisible(false)} />
+      <AddProjectModal
+        visible={isModalVisible}
+        onCancel={() => setModalVisible(false)}
+        all_leads={all_leads?.leads}
+        all_employees={all_employees?.employees}
+      />
 
     </div>
   );

@@ -10,7 +10,7 @@ const Chart = () => {
     <Card className={styles.mainCard}>
       <div className={styles.chartmainWrapper}>
         <div className={styles.chartHeader}>
-          Sales <img src={CustomImg.AlertIcon} alt="img" />
+          Projects analytics <img src={CustomImg.AlertIcon} alt="img" />
         </div>
         <ReactEChart option={option} className={styles.chart} />
       </div>

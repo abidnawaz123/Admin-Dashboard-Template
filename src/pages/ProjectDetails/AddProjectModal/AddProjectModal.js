@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 const { TextArea } = Input;
 const { Option } = Select;
 
-const AddProjectModal = ({ visible, onCancel }) => {
+const AddProjectModal = ({ visible, onCancel, all_leads, all_employees }) => {
   const [form] = Form.useForm();
   const dispatch = useDispatch();
 
@@ -13,8 +13,10 @@ const AddProjectModal = ({ visible, onCancel }) => {
   const leads = useSelector((state) => state?.employees?.leads || []); // Assuming leads are separately available
 
   const handleSubmit = (values) => {
+    console.log('vaues are ==>', values)
+
     dispatch({
-      type: "CREATE_PROJECT_REQUEST",
+      type: "POST_NEW_PROJECT_REQUEST",
       payload: values,
     });
     form.resetFields();
@@ -59,7 +61,7 @@ const AddProjectModal = ({ visible, onCancel }) => {
           rules={[{ required: true, message: "Please select a project lead" }]}
         >
           <Select placeholder="Select lead">
-            {leads.map((lead) => (
+            {all_leads?.map((lead) => (
               <Option key={lead.id} value={lead.id}>
                 {lead.name}
               </Option>
@@ -77,8 +79,8 @@ const AddProjectModal = ({ visible, onCancel }) => {
             placeholder="Select employees"
             optionFilterProp="children"
           >
-            {employees.map((emp) => (
-              <Option key={emp.id} value={emp.id}>
+            {all_employees?.map((emp) => (
+              <Option key={emp.id} value={emp.name}>
                 {emp.name}
               </Option>
             ))}

@@ -64,7 +64,7 @@ const MenuItems = () => {
     {
       key: "5",
       icon: <ProjectOutlined />,
-      label: "Project Details",
+      label: "Projects",
     },
   ];
 
